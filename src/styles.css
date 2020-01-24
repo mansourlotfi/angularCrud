@@ -59,4 +59,6 @@ input {
 	border-radius: 7px;
 	border: 1px solid #c20524;
 	margin: 10px;
+	text-align: center;
+	font-size: 20px;
 }
