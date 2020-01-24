@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+//import 'rxjs/add/operator/toPromise';
 
 @Component({
 	selector: 'app-root',
@@ -10,6 +11,7 @@ export class AppComponent implements OnInit {
 	title = 'angularCrud';
 	constructor(private http: HttpClient) {}
 
+	//get
 	persons = [];
 
 	fetchdata = function() {
@@ -19,7 +21,7 @@ export class AppComponent implements OnInit {
 		});
 	};
 
-	//add
+	//post
 	personObj: object = {};
 	confirmationString: string = 'new person added';
 	isAdded: boolean = false;
@@ -32,7 +34,6 @@ export class AppComponent implements OnInit {
 			adderss: person.adderss
 		};
 		this.http.post('http://localhost:5555/persons', this.personObj).subscribe((res: Response) => {
-			console.warn('post fired', res);
 			this.isAdded = true;
 			for (let i = 1; i < this.persons.length; i++) {
 				this.persons.push({
@@ -46,8 +47,39 @@ export class AppComponent implements OnInit {
 		});
 	};
 
+	//delete
+	id: number;
+	private header = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+	deletePerson = function(id) {
+		if (confirm('Are you sure?')) {
+			const url = `${'http://localhost:5555/persons'}/${id}`;
+			return this.http.delete(url, { header: this.header }).toPromise().then(() => {
+				this.fetchdata();
+			});
+		} else {
+		}
+	};
+
+	//update
+	data: object = {};
+	edithPerson = function(id) {
+		this.fetchdata();
+		for (var i = 1; i < this.persons.length; i++) {
+			if (parseInt(this.persons[i].id) === this.id) {
+				this.data = this.persons[i];
+				console.warn(this.data, 'this is dataaaaaaaa');
+				break;
+			}
+		}
+
+		console.warn(this.data, 'this is dataaaaaaaa');
+		console.warn(id);
+		console.warn(this.persons, 'onedith');
+	};
+
 	ngOnInit() {
 		this.fetchdata();
-		console.warn(this.persons, 'asd');
+		console.warn(this.persons, 'oninit');
 	}
 }

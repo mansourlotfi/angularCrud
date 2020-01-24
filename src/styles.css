@@ -6,8 +6,57 @@ td {
 	border: 1px solid rebeccapurple;
 	font-size: 30px;
 	padding: 10px;
+	text-align: center;
 }
 
-h2 {
+h2,
+h1 {
 	color: green;
+	padding-top: 20px;
+}
+
+a {
+	color: blue;
+}
+
+a:hover {
+	cursor: pointer;
+}
+
+.App {
+	margin: auto;
+	width: 50%;
+}
+
+.formfield {
+	width: 100%;
+	background-color: #6bc1e9;
+	border-radius: 10px;
+	padding: 20px;
+	text-align: center;
+	font-size: 20px;
+	height: auto;
+	border: 1px solid #00b894;
+}
+
+.myButton {
+	width: 50%;
+	height: auto;
+	background-color: #30eb39;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	text-align: center;
+	font-size: 30px;
+}
+
+input {
+	height: 30px;
+	width: auto;
+	border-radius: 7px;
+	border: 1px solid #c20524;
+	margin: 10px;
 }
